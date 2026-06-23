@@ -1,14 +1,15 @@
-// Exercise 2
-function createName(name) {
+// Exercise 4
+function createName(name, age) {
   return {
     name,
-    greet: () => console.log(`היי, אני ${name}`),
+    age,
+    greet: () => console.log({ name, age }),
   };
 }
 
-  // Exercise 3
-  const name1 = greetName("Shlomi");
-  const name2 = greetName("Avi");
+// Exercise 3
+const name1 = createName("Shlomi", 22);
+const name2 = createName("Avi", 30);
 
-  name1.greet();
-  name2.greet();
+name1.greet();
+name2.greet();
