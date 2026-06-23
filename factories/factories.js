@@ -4,6 +4,7 @@ function createName(name, age) {
     name,
     age,
     greet: () => console.log({ name, age }),
+    isOver18: () => age > 18,
   };
 }
 
