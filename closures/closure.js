@@ -12,6 +12,7 @@ print();
 console.log("\n=== Exercise 2 ===");
 function createGreeting() {
   let name;
+
   return function (name) {
     console.log(`Hello ${name}`);
   };
@@ -19,3 +20,16 @@ function createGreeting() {
 
 const greeting = createGreeting();
 greeting("Shlomi");
+
+// Exercise 3
+console.log("\n=== Exercise 3 ===");
+function createCounter() {
+  let count = 0;
+
+  return function () {
+    count++;
+    return count;
+  };
+}
+const getCounter = createCounter();
+console.log(getCounter());
