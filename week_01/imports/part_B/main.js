@@ -5,6 +5,7 @@ import { isEven } from "./valid.js";
 import mult from "./math.js";
 import createUser from "./named.js";
 import stockExists from "./valid.js";
+import { app } from "./app.js";
 // import moduleName from 'module';
 
 console.log("=== Exercise 1 ===");
@@ -28,3 +29,6 @@ console.log(createUser("Shlomi", 1));
 console.log("\n=== Exercise 8 ===");
 console.log(`1 is even? ${isEven(1)}`);
 console.log(stockExists(0));
+
+console.log("\n=== Exercise 9 ===");
+app(5, 6);
