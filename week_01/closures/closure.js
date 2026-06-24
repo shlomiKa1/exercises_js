@@ -87,3 +87,27 @@ const once = () =>
   };
 const callFn = once();
 callFn();
+
+// Exercise 13
+console.log("\n=== Exercise 12 ===");
+function createStack() {
+  const arr = [];
+
+  return {
+    push(val) {
+      arr.push(val);
+    },
+    pop() {
+      arr.pop();
+    },
+    peek(index) {
+      return arr[index + 1];
+    },
+  };
+}
+const arr = createStack();
+arr.push(1);
+arr.push(2);
+arr.push(3);
+arr.pop();
+console.log(arr.peek(0));
