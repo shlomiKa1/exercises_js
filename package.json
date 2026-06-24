@@ -12,5 +12,13 @@
   "type": "module",
   "dependencies": {
     "analiza-sync": "^1.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shlomiKa1/exercise_js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shlomiKa1/exercise_js/issues"
+  },
+  "homepage": "https://github.com/shlomiKa1/exercise_js#readme"
 }
