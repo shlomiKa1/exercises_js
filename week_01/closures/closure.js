@@ -72,9 +72,18 @@ function createSecret() {
     },
   };
 }
-const secret = createSecret()
+const secret = createSecret();
 const get = secret.getSecret();
 console.log(`Get secret value: ${get}`);
 console.log(`Set secret value '${get}' to 'a'`);
-secret.setSecret("a")
+secret.setSecret("a");
 console.log(`Get secret value: ${secret.getSecret()}`);
+
+// Exercise 8
+console.log("\n=== Exercise 8 ===");
+const once = () =>
+  function fn() {
+    console.log("fn run one time");
+  };
+const callFn = once();
+callFn();
