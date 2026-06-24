@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shlomiKa1/exercise_js.git"
+    "url": "git+https://github.com/shlomiKa1/exercises_js.git"
   },
   "bugs": {
-    "url": "https://github.com/shlomiKa1/exercise_js/issues"
+    "url": "https://github.com/shlomiKa1/exercises_js/issues"
   },
-  "homepage": "https://github.com/shlomiKa1/exercise_js#readme"
+  "homepage": "https://github.com/shlomiKa1/exercises_js#readme"
 }
