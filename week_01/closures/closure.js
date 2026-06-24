@@ -124,3 +124,28 @@ function createIdGenarator() {
 const gen = createIdGenarator();
 console.log(gen());
 console.log(gen());
+
+// Exercise 15
+console.log("\n=== Exercise 15 ===");
+function createBankAccount(initialBalance = 0) {
+  let balnce = initialBalance;
+
+  return {
+    deposit: function (amount) {
+      if (amount < 0) throw new Error("Balance most be positive");
+      else balnce += amount;
+    },
+
+    withdraw: function (amount) {
+      if (amount < 0) throw new Error("Balance most be positive");
+      else if (amount > balnce) throw new Error("Amount is more than balance");
+      else balnce -= amount;
+    },
+
+    getBalance: () => balnce,
+  };
+}
+const bankAccount = createBankAccount(100);
+bankAccount.deposit(18);
+bankAccount.withdraw(1);
+console.log(bankAccount.getBalance());
