@@ -88,7 +88,7 @@ const once = () =>
 const callFn = once();
 callFn();
 
-// Exercise 13
+// Exercise 12
 console.log("\n=== Exercise 12 ===");
 function createStack() {
   const arr = [];
@@ -111,3 +111,16 @@ arr.push(2);
 arr.push(3);
 arr.pop();
 console.log(arr.peek(0));
+
+// Exrcise 13
+console.log("\n=== Exercise 13 ===");
+function createIdGenarator() {
+  let id = 1;
+
+  return function () {
+    return id++;
+  };
+}
+const gen = createIdGenarator();
+console.log(gen());
+console.log(gen());
