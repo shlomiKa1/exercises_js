@@ -1,8 +1,11 @@
 import { sum, PI } from "./math.js";
 import { greet } from "./named.js";
 import { count } from "./array.js";
+import { isEven } from "./valid.js";
 import mult from "./math.js";
 import createUser from "./named.js";
+import stockExists from "./valid.js";
+// import moduleName from 'module';
 
 console.log("=== Exercise 1 ===");
 console.log(`1 + 3 = ${sum(1, 3)}`);
@@ -21,3 +24,7 @@ console.log(`count of values in array: ${count([1, 2, 3, 4, 5])}`);
 
 console.log("\n=== Exercise 6 ===");
 console.log(createUser("Shlomi", 1));
+
+console.log("\n=== Exercise 8 ===");
+console.log(`1 is even? ${isEven(1)}`);
+console.log(stockExists(0));
