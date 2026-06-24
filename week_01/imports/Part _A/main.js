@@ -4,6 +4,7 @@ const { person } = require("./object.js");
 const { adds, substract } = require("./calculate.js");
 const { addition, subtraction, multiplier } = require("./utils.js");
 const { isEven } = require("./evens.js");
+const { sumNums } = require("./arrayNum.js");
 
 // Exercise 1
 console.log("=== Exercise 1 ===");
@@ -32,3 +33,7 @@ console.log(`5 * 5 = ${multiplier(5, 5)}`);
 console.log("\n=== Exercise 6 ===");
 console.log(`'2' is even? ${isEven(2)}`);
 console.log(`'3' is even? ${isEven(3)}`);
+
+// Exercise 8
+console.log("\n=== Exercise 8 ===");
+console.log(`sum: ${sumNums([1, 2, 3, 4])}`);
