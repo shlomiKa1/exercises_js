@@ -12,7 +12,9 @@ const findById = (id, customers) =>
   customers.find((customer) => customer.id === id);
 
 const findByName = (name, customers) =>
-  customers.find((customer) => customer.name === name);
+  customers.find(
+    (customer) => customer.fullName.toLowerCase() === name.toLowerCase(),
+  );
 
 const isActive = (customer) => customer.status === true;
 
@@ -54,7 +56,10 @@ export const vaildWithdraw = (id, amount, customers) => {
 };
 
 export function vaildCustomer(nameID, customers) {
-  if (typeof nameID === "string") return findByName(nameID, customers);
+  if (typeof nameID === "string") {
+    if (isValidName(nameID)) return findByName(nameID, customers);
+    return "Error name is not vaild";
+  }
   if (typeof nameID === "number") return findById(nameID, customers);
 }
 
