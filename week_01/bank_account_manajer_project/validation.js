@@ -8,3 +8,11 @@ export const isValidBalance = (balance) =>
 
 export const isValidTypeAccount = (typeAccount) =>
   TYPE_ACCOUNT.includes(typeAccount.toLowerCase());
+
+export const isValidCreatetion = (fullName, balabce, accountType) => {
+  if (!isValidName(fullName)) throw new Error("You can't put empty name!!!");
+  if (!isValidBalance(balabce)) throw new Error("Balance ia not valid");
+  if (!isValidTypeAccount(accountType))
+    throw new Error("Type account is not vaild");
+  return true;
+};
