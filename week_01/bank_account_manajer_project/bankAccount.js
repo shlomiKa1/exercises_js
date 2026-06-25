@@ -1,6 +1,7 @@
 import {
   isValidCreatetion,
   vaildDeposit,
+  vaildWithdraw,
 } from "./validation.js";
 
 export function factoryCreateCustomer() {
@@ -34,14 +35,27 @@ export function showCustomers(customers) {
 }
 
 export function deposit(customerID, amount, customers) {
-    if (vaildDeposit(customerID, amount, customers)) {
-        customer.balabce += amount;
-        console.log("Deposit completed successfully");
-    }
-    console.log("Depodit faild");
+  const customer = vaildDeposit(customerID, amount, customers);
+    console.log(customer);
+    
+  if (customer) {
+    customer.balabce += amount;
+    console.log("Deposit completed successfully");
+    return;
+  }
+  console.log("Depodit faild");
 }
 
-export function withdraw(customerID, amount) {}
+export function withdraw(customerID, amount, customers) {
+  const customer = vaildWithdraw(customerID, amount, customers);
+
+  if (customer) {
+    customer.balabce -= amount;
+    console.log("Withdraw completed successfully");
+    return;
+  }
+  console.log("Withdraw failed: insufficient balance");
+}
 
 export function searchCustomer(nameID) {}
 
@@ -55,4 +69,6 @@ const arr = [];
 arr.push(createCustomer("Shlomi", 12345, "student"));
 arr.push(createCustomer("Shlomi", 12345, "premium"));
 console.log(arr);
+showCustomers(arr);
+withdraw(1, 2, arr)
 showCustomers(arr);

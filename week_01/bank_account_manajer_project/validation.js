@@ -8,9 +8,12 @@ const isValidBalance = (balance) => typeof balance === "number" && balance >= 0;
 const isValidTypeAccount = (typeAccount) =>
   TYPE_ACCOUNT.includes(typeAccount.toLowerCase());
 
-const idExists = (id, customers) => customers.includes(id);
+const findById = (id, customers) =>
+  customers.find((customer) => customer.id === id);
 
-const isActive = (customer) => customer.isActive === true;
+const isActive = (customer) => customer.status === true;
+
+const vaildAmount = (amount, balabce) => amount < balabce;
 
 export const isValidCreatetion = (fullName, balabce, accountType) => {
   if (!isValidName(fullName)) return "You can't put empty name!!!";
@@ -23,12 +26,26 @@ export const isValidCreatetion = (fullName, balabce, accountType) => {
 };
 
 export const vaildDeposit = (id, amount, customers) => {
-  if (!idExists(id, customers)) return false;
+  const customer = findById(id, customers);
+
+  if (!customer) return customer;
 
   if (!isValidBalance(amount)) return false;
 
-  customer = customers.find((findCustomer) => findCustomer.id == id);
-  if (isActive(customer)) return false;
+  if (!isActive(customer)) return false;
+
+  return customer;
+};
+
+export const vaildWithdraw = (id, amount, customers) => {
+  const customer = findById(id, customers);
+
+  if (!customer) return false;
+
+  if (!isValidBalance(amount) || !vaildAmount(amount, customer.balabce))
+    return false;
+
+  if (!isActive(customer)) return false;
 
   return customer;
 };
