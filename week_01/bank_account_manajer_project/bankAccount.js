@@ -2,6 +2,7 @@ import {
   isValidCreatetion,
   vaildDeposit,
   vaildWithdraw,
+  vaildCustomer,
 } from "./validation.js";
 
 export function factoryCreateCustomer() {
@@ -43,7 +44,7 @@ export function deposit(customerID, amount, customers) {
     console.log("Deposit completed successfully");
     return;
   }
-  console.log("Depodit faild");
+  console.log("Depodit failed: insufficient balance");
 }
 
 export function withdraw(customerID, amount, customers) {
@@ -57,7 +58,10 @@ export function withdraw(customerID, amount, customers) {
   console.log("Withdraw failed: insufficient balance");
 }
 
-export function searchCustomer(nameID) {}
+export function searchCustomer(nameID, customers) {
+    const customer = vaildCustomer(nameID, customers)
+    return customer
+}
 
 export function closeAccount(customerID) {}
 

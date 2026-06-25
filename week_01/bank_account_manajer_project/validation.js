@@ -11,6 +11,9 @@ const isValidTypeAccount = (typeAccount) =>
 const findById = (id, customers) =>
   customers.find((customer) => customer.id === id);
 
+const findByName = (name, customers) =>
+  customers.find((customer) => customer.name === name);
+
 const isActive = (customer) => customer.status === true;
 
 const vaildAmount = (amount, balabce) => amount < balabce;
@@ -49,3 +52,8 @@ export const vaildWithdraw = (id, amount, customers) => {
 
   return customer;
 };
+
+export function vaildCustomer(nameID, customers) {
+  if (typeof nameID === "string") return findByName(nameID, customers);
+  if (typeof nameID === "number") return findById(nameID, customers);
+}
