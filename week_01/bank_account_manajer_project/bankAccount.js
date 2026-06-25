@@ -9,8 +9,8 @@ import {
 export function factoryCreateCustomer() {
   let idCounter = 1;
 
-  return function (fullName, balabce, accountType) {
-    if (isValidCreatetion(fullName, balabce, accountType)) {
+  return function (fullName, balance, accountType) {
+    if (isValidCreatetion(fullName, balance, accountType)) {
       const proto = {
         getCustomer: function () {
           return this;
@@ -21,7 +21,7 @@ export function factoryCreateCustomer() {
         id: idCounter,
         fullName,
         accountType,
-        balabce,
+        balance,
         status: true,
       };
 
@@ -41,7 +41,7 @@ export function deposit(customerID, amount, customers) {
   console.log(customer);
 
   if (customer) {
-    customer.balabce += amount;
+    customer.balance += amount;
     console.log("Deposit completed successfully");
     return;
   }
@@ -52,7 +52,7 @@ export function withdraw(customerID, amount, customers) {
   const customer = vaildWithdraw(customerID, amount, customers);
 
   if (customer) {
-    customer.balabce -= amount;
+    customer.balance -= amount;
     console.log("Withdraw completed successfully");
     return;
   }
@@ -73,17 +73,32 @@ export function closeAccount(customerID, customers) {
   return "Account closed successfully";
 }
 
-export function showStatistics() {}
+export function showStatistics(customers) {
+  let show = "===== Statistics =====";
+  show += `\nTotal Customers: ${getTotalCustomers(customers)}`;
+  show += `\nActive Customers: ${geteActiveAccount(customers)}`;
+  show += `\nTotal Money: ${getTotalMoney(customers)}`;
+  show += `\nAberage Balance: ${getAverageBalance(customers)}`;
+  show += `\nHighest Balance: ${getHighestBalance(customers)}`;
 
-const createCustomer = factoryCreateCustomer();
+  return show;
+}
 
-const arr = [];
-arr.push(createCustomer("Shlomi", 12345, "student"));
-arr.push(createCustomer("Shlomi", 12345, "premium"));
-// console.log(arr);
-// showCustomers(arr);
-// withdraw(1, 2, arr)
-// showCustomers(arr);
-// console.log(closeAccount(1, arr));
-// console.log(closeAccount(1, arr));
-// showCustomers(arr);
+const getTotalCustomers = (customers) => customers.length;
+
+const geteActiveAccount = (customers) =>
+  customers.filter((customer) => customer.status === true).length;
+
+function getTotalMoney(customers) {
+  return customers
+    .map((customer) => customer.balance)
+    .reduce((acc, current) => acc + current, 0);
+}
+
+function getAverageBalance(customers) {
+  return getTotalMoney(customers) / getTotalCustomers(customers);
+}
+
+function getHighestBalance(customers) {
+  return Math.max(...customers.map((custumer) => custumer.balance));
+}
