@@ -57,3 +57,12 @@ export function vaildCustomer(nameID, customers) {
   if (typeof nameID === "string") return findByName(nameID, customers);
   if (typeof nameID === "number") return findById(nameID, customers);
 }
+
+export function vaildClose(id, customers) {
+  const customer = findById(id, customers);
+
+  if (!customer) return false;
+
+  if (!isActive(customer)) return "Account allredy closed";
+  return customer;
+}

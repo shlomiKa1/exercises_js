@@ -3,6 +3,7 @@ import {
   vaildDeposit,
   vaildWithdraw,
   vaildCustomer,
+  vaildClose,
 } from "./validation.js";
 
 export function factoryCreateCustomer() {
@@ -37,8 +38,8 @@ export function showCustomers(customers) {
 
 export function deposit(customerID, amount, customers) {
   const customer = vaildDeposit(customerID, amount, customers);
-    console.log(customer);
-    
+  console.log(customer);
+
   if (customer) {
     customer.balabce += amount;
     console.log("Deposit completed successfully");
@@ -59,11 +60,18 @@ export function withdraw(customerID, amount, customers) {
 }
 
 export function searchCustomer(nameID, customers) {
-    const customer = vaildCustomer(nameID, customers)
-    return customer
+  const customer = vaildCustomer(nameID, customers);
+  return customer;
 }
 
-export function closeAccount(customerID) {}
+export function closeAccount(customerID, customers) {
+  const customer = vaildClose(customerID, customers);
+
+  if (!customer) return "Close account failed: ID is not exists";
+  if (typeof customer === "string") return customer;
+  customer.status = false;
+  return "Account closed successfully";
+}
 
 export function showStatistics() {}
 
@@ -72,7 +80,10 @@ const createCustomer = factoryCreateCustomer();
 const arr = [];
 arr.push(createCustomer("Shlomi", 12345, "student"));
 arr.push(createCustomer("Shlomi", 12345, "premium"));
-console.log(arr);
-showCustomers(arr);
-withdraw(1, 2, arr)
-showCustomers(arr);
+// console.log(arr);
+// showCustomers(arr);
+// withdraw(1, 2, arr)
+// showCustomers(arr);
+// console.log(closeAccount(1, arr));
+// console.log(closeAccount(1, arr));
+// showCustomers(arr);
