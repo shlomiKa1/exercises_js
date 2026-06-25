@@ -6,7 +6,7 @@ import {
 } from "./validation.js";
 
 export function factoryCreateCustomer() {
-  let idCounter = 0;
+  let idCounter = 1;
 
   return function (fullName, balabce, accountType) {
     if (isValidCreatetion(fullName, balabce, accountType)) {
@@ -19,8 +19,9 @@ export function factoryCreateCustomer() {
       const customer = {
         id: idCounter,
         fullName,
-        balabce,
         accountType,
+        balabce,
+        status: true,
       };
 
       idCounter++;
@@ -30,7 +31,9 @@ export function factoryCreateCustomer() {
   };
 }
 
-export function showCustomers(customers) {}
+export function showCustomers(customers) {
+  console.table(customers);
+}
 
 export function deposit(customerID, amount) {}
 
@@ -42,9 +45,10 @@ export function closeAccount(customerID) {}
 
 export function showStatistics() {}
 
-// const createCustomer = factoryCreateCustomer();
+const createCustomer = factoryCreateCustomer();
 
-// const arr = [];
-// arr.push(createCustomer("Shlomi", 12345));
-// arr.push(createCustomer("Shlomi", 12345));
-// console.log(arr);
+const arr = [];
+arr.push(createCustomer("Shlomi", 12345, "student"));
+arr.push(createCustomer("Shlomi", 12345, "premium"));
+console.log(arr);
+showCustomers(arr);
