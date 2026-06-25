@@ -1,8 +1,6 @@
 import {
   isValidCreatetion,
-  isValidName,
-  isValidBalance,
-  isValidTypeAccount,
+  vaildDeposit,
 } from "./validation.js";
 
 export function factoryCreateCustomer() {
@@ -35,7 +33,13 @@ export function showCustomers(customers) {
   console.table(customers);
 }
 
-export function deposit(customerID, amount) {}
+export function deposit(customerID, amount, customers) {
+    if (vaildDeposit(customerID, amount, customers)) {
+        customer.balabce += amount;
+        console.log("Deposit completed successfully");
+    }
+    console.log("Depodit faild");
+}
 
 export function withdraw(customerID, amount) {}
 
