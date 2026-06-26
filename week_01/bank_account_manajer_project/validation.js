@@ -20,17 +20,17 @@ const isActive = (customer) => customer.status === true;
 
 const vaildAmount = (amount, balabce) => amount < balabce;
 
-export const isValidCreatetion = (fullName, balabce, accountType) => {
+export function isValidCreation (fullName, balance, accountType) {
   if (!isValidName(fullName)) return "You can't put empty name!!!";
 
-  if (!isValidBalance(balabce)) return "Balance ia not valid";
+  if (!isValidBalance(balance)) return "Balance ia not valid";
 
   if (!isValidTypeAccount(accountType)) return "Type account is not vaild";
 
   return true;
 };
 
-export const vaildDeposit = (id, amount, customers) => {
+export function vaildDeposit (id, amount, customers) {
   const customer = findById(id, customers);
 
   if (!customer) return customer;
@@ -42,12 +42,12 @@ export const vaildDeposit = (id, amount, customers) => {
   return customer;
 };
 
-export const vaildWithdraw = (id, amount, customers) => {
+export function vaildWithdraw (id, amount, customers) {
   const customer = findById(id, customers);
 
   if (!customer) return false;
 
-  if (!isValidBalance(amount) || !vaildAmount(amount, customer.balabce))
+  if (!isValidBalance(amount) || !vaildAmount(amount, customer.balance))
     return false;
 
   if (!isActive(customer)) return false;

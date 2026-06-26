@@ -1,5 +1,5 @@
 import {
-  isValidCreatetion,
+  isValidCreation,
   vaildDeposit,
   vaildWithdraw,
   vaildCustomer,
@@ -10,7 +10,10 @@ export function factoryCreateCustomer() {
   let idCounter = 1;
 
   return function (fullName, balance, accountType) {
-    if (isValidCreatetion(fullName, balance, accountType)) {
+    const validationResult = isValidCreation(fullName, balance, accountType);
+
+    if (validationResult !== true) return validationResult;
+    else {
       const proto = {
         getCustomer: function () {
           return this;
@@ -26,7 +29,7 @@ export function factoryCreateCustomer() {
       };
 
       idCounter++;
-      Object.setPrototypeOf(proto, customer);
+      Object.setPrototypeOf(customer, proto);
       return customer;
     }
   };
@@ -38,14 +41,12 @@ export function showCustomers(customers) {
 
 export function deposit(customerID, amount, customers) {
   const customer = vaildDeposit(customerID, amount, customers);
-  console.log(customer);
 
-  if (customer) {
-    customer.balance += amount;
-    console.log("Deposit completed successfully");
-    return;
-  }
-  console.log("Depodit failed: insufficient balance");
+  if (!customer)
+    return "Deposit failed: customer not found or account inactive";
+
+  customer.balance += amount;
+  return "Deposit completed successfully";
 }
 
 export function withdraw(customerID, amount, customers) {
@@ -53,14 +54,14 @@ export function withdraw(customerID, amount, customers) {
 
   if (customer) {
     customer.balance -= amount;
-    console.log("Withdraw completed successfully");
-    return;
+    return "Withdraw completed successfully";
   }
-  console.log("Withdraw failed: insufficient balance");
+  return "Withdraw failed: insufficient balance";
 }
 
 export function searchCustomer(nameID, customers) {
   const customer = vaildCustomer(nameID, customers);
+  if (!customer) return "Customer is not found";
   return customer;
 }
 
@@ -76,7 +77,7 @@ export function closeAccount(customerID, customers) {
 export function showStatistics(customers) {
   let show = "===== Statistics =====";
   show += `\nTotal Customers: ${getTotalCustomers(customers)}`;
-  show += `\nActive Customers: ${geteActiveAccount(customers)}`;
+  show += `\nActive Customers: ${getActiveAccount(customers)}`;
   show += `\nTotal Money: ${getTotalMoney(customers)}`;
   show += `\nAberage Balance: ${getAverageBalance(customers)}`;
   show += `\nHighest Balance: ${getHighestBalance(customers)}`;
@@ -86,7 +87,7 @@ export function showStatistics(customers) {
 
 const getTotalCustomers = (customers) => customers.length;
 
-const geteActiveAccount = (customers) =>
+const getActiveAccount = (customers) =>
   customers.filter((customer) => customer.status === true).length;
 
 function getTotalMoney(customers) {
