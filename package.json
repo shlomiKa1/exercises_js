@@ -1,0 +1,24 @@
+{
+  "name": "exercises_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "analiza-sync": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shlomiKa1/exercises_js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/shlomiKa1/exercises_js/issues"
+  },
+  "homepage": "https://github.com/shlomiKa1/exercises_js#readme"
+}
