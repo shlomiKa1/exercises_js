@@ -11,7 +11,11 @@ server.get("/api/search", (req, res) => {
   if (!name) {
     return res.status(400).json({ message: "Name is required" });
   }
-  res.json({ message: "Hello " + name });
+  res.json({ message: "Hello '" + name + "' from query param" });
+});
+
+server.get("/api/:name/", (req, res) => {
+  res.send({ message: "Hello '" + req.params.name + "' from path param" });
 });
 
 server.listen(3000, () => console.log("Listening on port 3000"));
