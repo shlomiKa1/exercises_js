@@ -86,3 +86,49 @@ console.log(
 console.log(
   "2. This Incompatibility bugs, Prevents browser crashes and Prevents circular dependency problems.",
 );
+
+// Exercise 11
+console.log("\n=== Exercise 11 ===");
+console.log("1. Read package.json");
+console.log("2. Check package-look.json");
+console.log("3. Download packages from npm");
+console.log("4. Create folder node_modules");
+console.log("5. Lock versions");
+
+// exercise 12
+console.log("\n=== Exercise 12 ===");
+console.log("Becase there is 'jumple' between:");
+console.log("ESModules -> import express from 'express';");
+console.log("CommonJS -> module.exports = app;");
+
+console.log("\n=== Exercise 13 ===");
+console.log("");
+
+console.log("\n=== Exercise 14 ===");
+console.log(
+  "1. Modules breings us -> shere files in code, files code more short, reusabillity beteen codes.",
+);
+console.log(
+  "2. Script-tags -> there not guaranteed order of loads, evreting is global, Nested dependencies are not supported",
+);
+console.log(
+  "3.1 dependencies is for that the project will run - like the server ",
+);
+console.log(
+  "3.2 devDependencies is for the programer - like autmaclly refresh",
+);
+console.log(
+  "4. Because it's lock rightlly version, make sure uniformity between computers and npm ci use that more fast and secure.",
+);
+console.log("5. Never upload node_modules because its can contain GBs");
+
+console.log("\n=== Exercise 15 ===");
+console.log(
+  "1. Node claming that is CJS if there is not a type so there will have error on import, and also import need ending with mjs",
+);
+console.log(
+  "2. The file of import most be ending with .mjs and also in the syntax of import",
+);
+console.log(
+  "3. For make sure that I will not get error, I will add to ending of files .mjs -> import, .cjs -> require",
+);
