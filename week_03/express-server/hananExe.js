@@ -11,8 +11,8 @@ const server = express();
 
 server.use(express.json());
 
-server.use("/api", (req, res, next) => {
-  console.log(req.method, " / ", req.url);
+server.use((req, res, next) => {
+  console.log(req.method, `"${req.url}"`);
   next();
 });
 
@@ -43,7 +43,9 @@ server.post("/api", async (req, res) => {
     }
 
     if (typeof +age !== "number" || +age < 0) {
-      return res.status(400).send(handlerMessage("Age most be a positive number"));
+      return res
+        .status(400)
+        .send(handlerMessage("Age most be a positive number"));
     }
 
     const students = await loadFile();
@@ -54,6 +56,27 @@ server.post("/api", async (req, res) => {
     res
       .status(201)
       .send(handlerMessage("Student created successfully", { id }));
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send(handlerMessage("Internal Server Error"));
+  }
+});
+
+server.put("/api/:id", async (req, res) => {
+  try {
+    const students = await loadFile();
+    const id = +req.params.id;
+    const student = students.find((student) => student.id === id);
+    const { name = student.name, age = student.age } = req.body;
+
+    if (!student) {
+      res.status(404).send(handlerMessage(`${id} Not Found`));
+    }
+
+    Object.assign(student, { name, age });
+
+    await saveFile(students);
+    res.send(handlerMessage("Student updated successfully", { id }));
   } catch (err) {
     console.error(err.message);
     res.status(500).send(handlerMessage("Internal Server Error"));
