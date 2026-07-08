@@ -83,4 +83,23 @@ server.put("/api/:id", async (req, res) => {
   }
 });
 
+server.delete("/api/:id", async (req, res) => {
+  try {
+    const students = await loadFile();
+    const id = +req.params.id;
+    const idx = students.findIndex((student) => student.id === id);
+
+    if (idx === -1) {
+      res.status(404).send(handlerMessage(`${id} Not Found`));
+    }
+
+    students.splice(idx, 1);
+    await saveFile(students);
+    res.send(handlerMessage("Student deleted successfully", { id }));
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send(handlerMessage("Internal Server Error"));
+  }
+});
+
 server.listen(3000, () => console.log("Listening on port 3000"));
