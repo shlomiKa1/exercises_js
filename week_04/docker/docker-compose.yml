@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+
+  app:
+    image: node:20-alpine
+    working_dir: /app
+    volumes: ["./:/app"]
+    command: node -e "setInterval(() => console.log('app running'), 2000)"
+
+  app_node:
+    image: node:20-alpine
+    container_name: node_app
+    working_dir: /app
+    volumes: ["./:/app_node"]
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_db
+    env_file: .env
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD={DB_PASSWORD}
+      - POSTGRES_DB=my-postgres
+    volumes: ["pgdata:/var/lib/postgras/data"]
+    ports:
+      - "3008:3006"
+
+volumes:
+  pgdata:
