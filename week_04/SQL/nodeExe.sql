@@ -1,0 +1,7 @@
+-- Active: 1784029970302@@127.0.0.1@3305@todo_db
+CREATE TABLE tasks (
+  id        INT AUTO_INCREMENT PRIMARY KEY,
+  title     VARCHAR(200) NOT NULL,
+  done      BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
